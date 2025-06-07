@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scaffolding Rental Services | Jyoti Enterprises</title>
+    <!-- Google Fonts: Inter for a clean, modern look -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Base Styles & Typography */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5; /* Light grey background */
+            color: #333;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem; /* Responsive padding */
+        }
+
+        /* Section Headings */
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem; /* More spacing */
+            color: #1a5276; /* Dark blue from the original site */
+            font-size: 2.5rem; /* Larger heading */
+            font-weight: 700; /* Bolder */
+            position: relative;
+            padding-bottom: 0.75rem; /* Space for the underline */
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px; /* Thicker underline */
+            background: #e67e22; /* Accent orange */
+            margin: 1rem auto 0; /* Centered, more space */
+            border-radius: 2px; /* Slightly rounded underline */
+        }
+
+        /* Page Header (Hero Section) */
+        .page-header {
+            background: linear-gradient(rgba(26, 82, 118, 0.85), rgba(26, 82, 118, 0.85)), url('https://placehold.co/1920x600/1a5276/ffffff?text=Quality+Scaffolding+Solutions') center center / cover no-repeat;
+            color: white;
+            padding: 6rem 1rem; /* More vertical padding */
+            text-align: center;
+            display: flex; /* Use flexbox for centering content */
+            align-items: center;
+            justify-content: center;
+            min-height: 400px; /* Minimum height for hero */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2); /* Subtle shadow */
+        }
+
+        .page-header h1 {
+            font-size: 3.5rem; /* Larger heading */
+            margin-bottom: 1rem;
+            font-weight: 800; /* Even bolder */
+            line-height: 1.2;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3); /* Text shadow for impact */
+        }
+
+        .page-header p {
+            font-size: 1.3rem; /* Larger paragraph */
+            opacity: 0.95;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Content Section */
+        .scaffolding-content {
+            padding: 4rem 0; /* Consistent vertical padding */
+        }
+
+        /* Scaffolding Types */
+        .scaffolding-types {
+            display: grid; /* Use CSS Grid for better layout control */
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
+            gap: 2rem; /* Gap between cards */
+            margin-bottom: 4rem;
+        }
+
+        .scaffolding-card {
+            background: white;
+            border-radius: 12px; /* More rounded corners */
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1); /* Stronger, softer shadow */
+            transition: transform 0.4s ease, box-shadow 0.4s ease; /* Smooth transition */
+            display: flex;
+            flex-direction: column; /* Stack image and details */
+        }
+
+        .scaffolding-card:hover {
+            transform: translateY(-15px); /* Lift more on hover */
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2); /* Enhanced shadow on hover */
+        }
+
+        .scaffolding-img {
+            height: 220px; /* Slightly taller images */
+            overflow: hidden;
+            border-bottom: 1px solid #eee; /* Separator */
+        }
+
+        .scaffolding-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smoother image zoom */
+        }
+
+        .scaffolding-card:hover .scaffolding-img img {
+            transform: scale(1.08); /* Slightly less aggressive zoom */
+        }
+
+        .scaffolding-details {
+            padding: 1.5rem; /* More padding inside card */
+            flex-grow: 1; /* Allow details to take available space */
+            display: flex;
+            flex-direction: column;
+        }
+
+        .scaffolding-details h3 {
+            color: #1a5276;
+            margin-bottom: 1rem;
+            font-size: 1.6rem; /* Larger heading */
+            font-weight: 600;
+            text-align: center; /* Center card titles */
+        }
+
+        .scaffolding-details ul {
+            list-style: none;
+            margin-bottom: 1.5rem;
+            flex-grow: 1; /* Push price and button to bottom */
+        }
+
+        .scaffolding-details ul li {
+            padding: 0.5rem 0;
+            border-bottom: 1px dashed #e0e0e0; /* Lighter dashed line */
+            display: flex; /* For icon alignment */
+            align-items: center;
+            gap: 0.75rem; /* Space between icon and text */
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        .scaffolding-details ul li i {
+            color: #e67e22; /* Icon color */
+        }
+
+        .scaffolding-details ul li:last-child {
+            border-bottom: none;
+        }
+
+        .price {
+            font-weight: 700; /* Bolder price */
+            color: #e67e22;
+            font-size: 1.5rem; /* Larger price */
+            margin: 1rem 0;
+            text-align: center; /* Center price */
+        }
+
+        /* Buttons */
+        .btn {
+            display: block; /* Full width button */
+            background: #e67e22; /* Orange accent button */
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 8px; /* Rounded button */
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s ease, transform 0.2s ease;
+            text-align: center;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 10px rgba(230, 126, 34, 0.3); /* Button shadow */
+        }
+
+        .btn:hover {
+            background: #d46f18; /* Darker orange on hover */
+            transform: translateY(-2px); /* Slight lift */
+            box-shadow: 0 6px 15px rgba(230, 126, 34, 0.4);
+        }
+
+        /* Rental Process */
+        .rental-process {
+            background: #1a5276;
+            color: white;
+            padding: 4rem 1rem;
+            border-radius: 12px;
+            margin-bottom: 4rem;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .rental-process h2 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 0.75rem;
+        }
+
+        .rental-process h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: #e67e22;
+            margin: 1rem auto 0;
+            border-radius: 2px;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+        }
+
+        .step {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(255,255,255,0.1); /* Semi-transparent background */
+            border-radius: 8px;
+            transition: background 0.3s ease;
+        }
+        
+        .step:hover {
+            background: rgba(255,255,255,0.2); /* Darken on hover */
+        }
+
+        .step-icon {
+            background: #e67e22;
+            width: 70px; /* Larger icon circle */
+            height: 70px;
+            margin: 0 auto 1.2rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem; /* Larger number */
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .step h3 {
+            margin-bottom: 0.75rem;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .step p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Contact CTA */
+        .contact-cta {
+            text-align: center;
+            background: #e67e22;
+            color: white;
+            padding: 4rem 1rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            margin-bottom: 4rem; /* Add margin to bottom */
+        }
+
+        .contact-cta h2 {
+            margin-bottom: 1.5rem;
+            font-size: 2.2rem;
+            font-weight: 700;
+        }
+
+        .contact-cta p {
+            font-size: 1.15rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        /* Footer */
+        .page-footer {
+            background: #2c3e50; /* Darker footer background */
+            color: white;
+            padding: 2.5rem 1rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .page-footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        .page-footer .fa-heart {
+            color: #e74c3c; /* Red heart */
+            margin: 0 5px;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 1024px) {
+            .page-header h1 {
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-header {
+                padding: 4rem 1rem;
+                min-height: 350px;
+            }
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+            .page-header p {
+                font-size: 1rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .scaffolding-types, .process-steps {
+                grid-template-columns: 1fr; /* Single column on smaller screens */
+            }
+            .scaffolding-card, .step {
+                max-width: 400px; /* Max width for single column cards */
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .scaffolding-details h3 {
+                font-size: 1.4rem;
+            }
+            .price {
+                font-size: 1.3rem;
+            }
+            .contact-cta h2 {
+                font-size: 1.8rem;
+            }
+            .contact-cta p {
+                font-size: 1rem;
+            }
+            .btn {
+                padding: 0.8rem 1.2rem;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-header {
+                padding: 3rem 1rem;
+                min-height: 300px;
+            }
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            .page-header p {
+                font-size: 0.9rem;
+            }
+            .section-title {
+                font-size: 1.8rem;
+                margin-bottom: 2rem;
+            }
+            .scaffolding-content {
+                padding: 2.5rem 0;
+            }
+            .rental-process, .contact-cta {
+                padding: 2.5rem 1rem;
+                margin-bottom: 2.5rem;
+            }
+            .rental-process h2, .contact-cta h2 {
+                font-size: 1.6rem;
+                margin-bottom: 2rem;
+            }
+            .step-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+            .step h3 {
+                font-size: 1.2rem;
+            }
+            .scaffolding-details ul li {
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Page Header (Hero Section) -->
+    <header class="page-header">
+        <div class="container">
+            <h1>Scaffolding Rental Services</h1>
+            <p>Jyoti Enterprises offers high-quality, safe, and efficient scaffolding solutions for all your construction and maintenance needs.</p>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main class="scaffolding-content">
+        <div class="container">
+            <!-- Scaffolding Types Section -->
+            <section>
+                <h2 class="section-title">Our Scaffolding Solutions</h2>
+                
+                <div class="scaffolding-types">
+                    <!-- Scaffolding Card 1: Cuplock Scaffolding -->
+                    <div class="scaffolding-card">
+                        <div class="scaffolding-img">
+                            <img src="https://placehold.co/500x220/1a5276/ffffff?text=Cuplock+Scaffolding" alt="Cuplock Scaffolding">
+                        </div>
+                        <div class="scaffolding-details">
+                            <h3>Cuplock Scaffolding</h3>
+                            <ul>
+                                <li><i class="fas fa-hammer"></i> Ideal for heavy-duty applications</li>
+                                <li><i class="fas fa-weight-hanging"></i> Load capacity: Up to 6.0 kN/m²</li>
+                                <li><i class="fas fa-building"></i> Best for high-rise buildings & industrial projects</li>
+                                <li><i class="fas fa-ruler-vertical"></i> Height capability: Up to 60 meters</li>
+                                <li><i class="fas fa-bolt"></i> Quick and secure assembly</li>
+                            </ul>
+                            <div class="price">₹120/day per square meter</div>
+                            <a href="#contact" class="btn">Enquire Now</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Scaffolding Card 2: Frame Scaffolding -->
+                    <div class="scaffolding-card">
+                        <div class="scaffolding-img">
+                            <img src="https://placehold.co/500x220/e67e22/ffffff?text=Frame+Scaffolding" alt="Frame Scaffolding">
+                        </div>
+                        <div class="scaffolding-details">
+                            <h3>Frame Scaffolding</h3>
+                            <ul>
+                                <li><i class="fas fa-tools"></i> Versatile for general construction</li>
+                                <li><i class="fas fa-weight-hanging"></i> Load capacity: Up to 3.0 kN/m²</li>
+                                <li><i class="fas fa-house-user"></i> Suitable for residential & commercial projects</li>
+                                <li><i class="fas fa-ruler-vertical"></i> Height capability: Up to 20 meters</li>
+                                <li><i class="fas fa-wrench"></i> Easy and rapid erection</li>
+                            </ul>
+                            <div class="price">₹85/day per square meter</div>
+                            <a href="#contact" class="btn">Enquire Now</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Scaffolding Card 3: Mobile Scaffolding -->
+                    <div class="scaffolding-card">
+                        <div class="scaffolding-img">
+                            <img src="https://placehold.co/500x220/1a5276/ffffff?text=Mobile+Scaffolding" alt="Mobile Scaffolding">
+                        </div>
+                        <div class="scaffolding-details">
+                            <h3>Mobile Scaffolding</h3>
+                            <ul>
+                                <li><i class="fas fa-mobile-alt"></i> Designed for mobility and flexibility</li>
+                                <li><i class="fas fa-weight-hanging"></i> Load capacity: Up to 2.0 kN/m²</li>
+                                <li><i class="fas fa-paint-roller"></i> Ideal for painting, repairs, and inspections</li>
+                                <li><i class="fas fa-ruler-vertical"></i> Height capability: Up to 12 meters</li>
+                                <li><i class="fas fa-wheelchair"></i> Equipped with wheels for easy movement</li>
+                            </ul>
+                            <div class="price">₹150/day per unit</div>
+                            <a href="#contact" class="btn">Enquire Now</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Add more scaffolding cards here if needed -->
+                    <!-- Scaffolding Card 4: Tube & Coupler Scaffolding -->
+                    <div class="scaffolding-card">
+                        <div class="scaffolding-img">
+                            <img src="https://placehold.co/500x220/e67e22/ffffff?text=Tube+%26+Coupler" alt="Tube & Coupler Scaffolding">
+                        </div>
+                        <div class="scaffolding-details">
+                            <h3>Tube & Coupler Scaffolding</h3>
+                            <ul>
+                                <li><i class="fas fa-puzzle-piece"></i> Highly adaptable to complex geometries</li>
+                                <li><i class="fas fa-weight-hanging"></i> Load capacity: Variable</li>
+                                <li><i class="fas fa-drafting-compass"></i> Custom configurations for unique sites</li>
+                                <li><i class="fas fa-ruler-vertical"></i> Unlimited height potential with proper design</li>
+                                <li><i class="fas fa-cogs"></i> Flexible and robust structure</li>
+                            </ul>
+                            <div class="price">Custom Quote</div>
+                            <a href="#contact" class="btn">Enquire Now</a>
+                        </div>
+                    </div>
+
+                    <!-- Scaffolding Card 5: Stair Tower Scaffolding -->
+                    <div class="scaffolding-card">
+                        <div class="scaffolding-img">
+                            <img src="https://placehold.co/500x220/1a5276/ffffff?text=Stair+Tower" alt="Stair Tower Scaffolding">
+                        </div>
+                        <div class="scaffolding-details">
+                            <h3>Stair Tower Scaffolding</h3>
+                            <ul>
+                                <li><i class="fas fa-stairs"></i> Provides safe and convenient access</li>
+                                <li><i class="fas fa-users"></i> Suitable for public access & large sites</li>
+                                <li><i class="fas fa-door-open"></i> Easy movement between levels</li>
+                                <li><i class="fas fa-ruler-vertical"></i> Modular design for various heights</li>
+                                <li><i class="fas fa-hand-holding"></i> Ensures worker and public safety</li>
+                            </ul>
+                            <div class="price">Custom Quote</div>
+                            <a href="#contact" class="btn">Enquire Now</a>
+                        </div>
+                    </div>
+
+                    <!-- Scaffolding Card 6: Shoring Scaffolding -->
+                    <div class="scaffolding-card">
+                        <div class="scaffolding-img">
+                            <img src="https://placehold.co/500x220/e67e22/ffffff?text=Shoring+Scaffolding" alt="Shoring Scaffolding">
+                        </div>
+                        <div class="scaffolding-details">
+                            <h3>Shoring Scaffolding</h3>
+                            <ul>
+                                <li><i class="fas fa-angle-double-up"></i> For temporary support of structures</li>
+                                <li><i class="fas fa-dolly"></i> Used during construction, repair, or demolition</li>
+                                <li><i class="fas fa-compress-arrows-alt"></i> Distributes heavy loads effectively</li>
+                                <li><i class="fas fa-shield-alt"></i> Enhances safety during structural work</li>
+                                <li><i class="fas fa-hard-hat"></i> Critical for heavy load-bearing applications</li>
+                            </ul>
+                            <div class="price">Custom Quote</div>
+                            <a href="#contact" class="btn">Enquire Now</a>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+            
+            <!-- Rental Process Section -->
+            <section>
+                <div class="rental-process">
+                    <h2>Our Simple Rental Process</h2>
+                    
+                    <div class="process-steps">
+                        <div class="step">
+                            <div class="step-icon">1</div>
+                            <h3>Enquire</h3>
+                            <p>Contact us with your scaffolding requirements and project details.</p>
+                        </div>
+                        
+                        <div class="step">
+                            <div class="step-icon">2</div>
+                            <h3>Quote</h3>
+                            <p>We provide a detailed, transparent, and customized quote promptly.</p>
+                        </div>
+                        
+                        <div class="step">
+                            <div class="step-icon">3</div>
+                            <h3>Delivery & Setup</h3>
+                            <p>Our expert team delivers and installs the scaffolding safely at your site.</p>
+                        </div>
+                        
+                        <div class="step">
+                            <div class="step-icon">4</div>
+                            <h3>Dismantling & Collection</h3>
+                            <p>Once your project is complete, we efficiently dismantle and collect the equipment.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Contact CTA Section -->
+            <section id="contact">
+                <div class="contact-cta">
+                    <h2>Ready to Rent Scaffolding?</h2>
+                    <p>Get in touch with Jyoti Enterprises today for a free consultation and personalized quote. We're here to support your project from start to finish.</p>
+                    <a href="tel:+919876543210" class="btn"><i class="fas fa-phone-alt mr-2"></i> Call Now: +91 98765 43210</a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="page-footer">
+        <div class="container">
+            <p>&copy; <span id="current-year"></span> Jyoti Enterprises. All rights reserved.</p>
+            <p>Providing reliable scaffolding solutions across the region.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Set current year in footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
