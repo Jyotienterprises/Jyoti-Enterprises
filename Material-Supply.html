@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jyoti Enterprises - Scaffolding Material Supply</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Font - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles to define your color scheme and font, aligning with previous design */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f8f8; /* Light gray background */
+            color: #333; /* Dark gray text */
+        }
+        /* Custom class for a subtle shadow on cards and hero section */
+        .card-shadow {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+        }
+        /* Primary color for elements like buttons, headers, and highlights */
+        .primary-color-bg {
+            background-color: #003366; /* Navy Blue - from your original style */
+        }
+        .primary-color-text {
+            color: #003366; /* Navy Blue */
+        }
+        .secondary-color-bg {
+            background-color: #FF6600; /* Orange - from your original style */
+        }
+        .secondary-color-text {
+            color: #FF6600; /* Orange */
+        }
+        /* Animations for hero section text */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in-down {
+            animation: fadeInDown 0.8s ease-out forwards;
+        }
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+            animation-delay: 0.2s; /* Delay for a staggered effect */
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+    <!-- Header Section -->
+    <header class="bg-white card-shadow py-4">
+        <div class="container mx-auto px-4 md:px-8 flex flex-col md:flex-row items-center justify-between">
+            <div class="text-2xl md:text-3xl font-bold primary-color-text mb-4 md:mb-0">
+                JYOTI <span class="secondary-color-text">ENTERPRISES</span>
+            </div>
+            <nav>
+                <ul class="flex space-x-6 md:space-x-8 text-lg font-medium">
+                    <li><a href="index.html" class="hover:primary-color-text transition-colors duration-300">Home</a></li>
+                    <li><a href="#services" class="hover:primary-color-text transition-colors duration-300">Services</a></li>
+                    <li><a href="#materials" class="primary-color-text font-semibold hover:primary-color-text transition-colors duration-300">Materials</a></li>
+                    <li><a href="#about" class="hover:primary-color-text transition-colors duration-300">About Us</a></li>
+                    <li><a href="#contact" class="hover:primary-color-text transition-colors duration-300">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <main class="flex-grow">
+        <section class="primary-color-bg text-white py-20 px-4 md:px-8 text-center rounded-b-lg mb-12">
+            <div class="container mx-auto">
+                <h1 class="text-4xl md:text-5xl font-extrabold mb-4 animate-fade-in-down">
+                    Premium Scaffolding Material Supply
+                </h1>
+                <p class="text-lg md:text-xl opacity-90 mb-8 max-w-3xl mx-auto animate-fade-in-up">
+                    Your trusted partner for high-quality, durable, and safe scaffolding solutions for every construction project.
+                </p>
+                <a href="#materials-grid-section" class="inline-block secondary-color-bg text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-orange-600 transition-all duration-300 transform hover:scale-105 card-shadow">
+                    Explore Our Materials
+                </a>
+            </div>
+        </section>
+
+        <!-- Materials Section -->
+        <section id="materials" class="container mx-auto px-4 md:px-8 py-12">
+            <h2 class="text-3xl md:text-4xl font-bold text-center primary-color-text mb-10">Our Premium Scaffolding Materials</h2>
+            <p class="text-lg text-gray-700 text-center mb-12 max-w-3xl mx-auto">
+                At Jyoti Enterprises, we provide high-quality scaffolding materials to meet all your construction needs. Our products are durable, safe, and compliant with industry standards.
+            </p>
+
+            <div id="materials-grid-section" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Material Card 1: Scaffolding Tubes -->
+                <div class="bg-white p-6 rounded-lg card-shadow hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1 border-t-4 border-orange-500">
+                    <img src="https://placehold.co/400x250/F0F0F0/888888?text=Scaffolding+Tubes" alt="Scaffolding Tubes" class="w-full h-48 object-cover rounded-md mb-4">
+                    <h3 class="text-xl font-semibold mb-2 primary-color-text">Scaffolding Tubes</h3>
+                    <p class="text-gray-700 text-base mb-4">
+                        High-quality steel tubes available in various sizes with galvanized coating for corrosion resistance.
+                    </p>
+                    <ul class="list-disc list-inside text-gray-600 text-sm mb-4">
+                        <li><strong>Sizes:</strong> 1.5m, 2m, 3m, etc.</li>
+                        <li><strong>Dimensions:</strong> 48.3mm OD, 4mm thickness</li>
+                        <li><strong>Finish:</strong> Galvanized for durability</li>
+                    </ul>
+                    <a href="#contact" class="secondary-color-bg text-white px-5 py-2 rounded-md hover:bg-orange-600 transition-colors duration-300 inline-block">
+                        Enquire Now
+                    </a>
+                </div>
+
+                <!-- Material Card 2: Scaffolding Couplers -->
+                <div class="bg-white p-6 rounded-lg card-shadow hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1 border-t-4 border-orange-500">
+                    <img src="https://placehold.co/400x250/F0F0F0/888888?text=Scaffolding+Couplers" alt="Scaffolding Couplers" class="w-full h-48 object-cover rounded-md mb-4">
+                    <h3 class="text-xl font-semibold mb-2 primary-color-text">Scaffolding Couplers</h3>
+                    <p class="text-gray-700 text-base mb-4">
+                        Durable couplers including right-angle, swivel, and sleeve couplers for secure connections.
+                    </p>
+                    <ul class="list-disc list-inside text-gray-600 text-sm mb-4">
+                        <li><strong>Types:</strong> Pressed steel, drop-forged steel</li>
+                        <li><strong>Functionality:</strong> Secure connections for tubes</li>
+                        <li><strong>Corrosion:</strong> Zinc plated for weather resistance</li>
+                    </ul>
+                    <a href="#contact" class="secondary-color-bg text-white px-5 py-2 rounded-md hover:bg-orange-600 transition-colors duration-300 inline-block">
+                        Enquire Now
+                    </a>
+                </div>
+
+                <!-- Material Card 3: Scaffolding Boards -->
+                <div class="bg-white p-6 rounded-lg card-shadow hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1 border-t-4 border-orange-500">
+                    <img src="https://placehold.co/400x250/F0F0F0/888888?text=Scaffolding+Boards" alt="Scaffolding Boards" class="w-full h-48 object-cover rounded-md mb-4">
+                    <h3 class="text-xl font-semibold mb-2 primary-color-text">Scaffolding Boards</h3>
+                    <p class="text-gray-700 text-base mb-4">
+                        Solid timber or aluminum boards with non-slip surfaces, tested for strength and durability.
+                    </p>
+                    <ul class="list-disc list-inside text-gray-600 text-sm mb-4">
+                        <li><strong>Material:</strong> Timber, Aluminum</li>
+                        <li><strong>Standard:</strong> 225mm wide, 38mm thick</li>
+                        <li><strong>Safety:</strong> Non-slip surface for secure footing</li>
+                    </ul>
+                    <a href="#contact" class="secondary-color-bg text-white px-5 py-2 rounded-md hover:bg-orange-600 transition-colors duration-300 inline-block">
+                        Enquire Now
+                    </a>
+                </div>
+
+                <!-- Material Card 4: Base Plates & Jacks -->
+                <div class="bg-white p-6 rounded-lg card-shadow hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1 border-t-4 border-orange-500">
+                    <img src="https://placehold.co/400x250/F0F0F0/888888?text=Base+Plates+%26+Jacks" alt="Base Plates & Jacks" class="w-full h-48 object-cover rounded-md mb-4">
+                    <h3 class="text-xl font-semibold mb-2 primary-color-text">Base Plates & Jacks</h3>
+                    <p class="text-gray-700 text-base mb-4">
+                        Adjustable base jacks and sturdy base plates for proper load distribution and stability.
+                    </p>
+                    <ul class="list-disc list-inside text-gray-600 text-sm mb-4">
+                        <li><strong>Adjustability:</strong> Fine-tune scaffold height</li>
+                        <li><strong>Load Capacity:</strong> Up to 5,000 kg</li>
+                        <li><strong>Material:</strong> Heavy-duty steel</li>
+                    </ul>
+                    <a href="#contact" class="secondary-color-bg text-white px-5 py-2 rounded-md hover:bg-orange-600 transition-colors duration-300 inline-block">
+                        Enquire Now
+                    </a>
+                </div>
+
+                <!-- Material Card 5: Safety Accessories -->
+                <div class="bg-white p-6 rounded-lg card-shadow hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1 border-t-4 border-orange-500">
+                    <img src="https://placehold.co/400x250/F0F0F0/888888?text=Safety+Accessories" alt="Safety Accessories" class="w-full h-48 object-cover rounded-md mb-4">
+                    <h3 class="text-xl font-semibold mb-2 primary-color-text">Safety Accessories</h3>
+                    <p class="text-700 text-base mb-4">
+                        Complete range including guardrails, toe boards, safety nets, and debris nets for fall protection.
+                    </p>
+                    <ul class="list-disc list-inside text-gray-600 text-sm mb-4">
+                        <li><strong>Components:</strong> Guardrails, Toe boards</li>
+                        <li><strong>Nets:</strong> Safety nets, Debris nets</li>
+                        <li><strong>Compliance:</strong> Meets OSHA standards</li>
+                    </ul>
+                    <a href="#contact" class="secondary-color-bg text-white px-5 py-2 rounded-md hover:bg-orange-600 transition-colors duration-300 inline-block">
+                        Enquire Now
+                    </a>
+                </div>
+
+                <!-- Material Card 6: Mobile Scaffolding -->
+                <div class="bg-white p-6 rounded-lg card-shadow hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1 border-t-4 border-orange-500">
+                    <img src="https://placehold.co/400x250/F0F0F0/888888?text=Mobile+Scaffolding" alt="Mobile Scaffolding" class="w-full h-48 object-cover rounded-md mb-4">
+                    <h3 class="text-xl font-semibold mb-2 primary-color-text">Mobile Scaffolding</h3>
+                    <p class="text-gray-700 text-base mb-4">
+                        Lightweight aluminum towers with locking castors for easy movement and height adjustment.
+                    </p>
+                    <ul class="list-disc list-inside text-gray-600 text-sm mb-4">
+                        <li><strong>Material:</strong> Lightweight Aluminum</li>
+                        <li><strong>Features:</strong> Locking castors for mobility</li>
+                        <li><strong>Max Height:</strong> Up to 12m for versatile use</li>
+                    </ul>
+                    <a href="#contact" class="secondary-color-bg text-white px-5 py-2 rounded-md hover:bg-orange-600 transition-colors duration-300 inline-block">
+                        Enquire Now
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose Us Section -->
+        <section class="bg-blue-50 py-16 px-4 md:px-8 text-center mt-12 rounded-lg mx-4 md:mx-auto max-w-5xl">
+            <h2 class="text-3xl md:text-4xl font-bold primary-color-text mb-6">Why Choose Jyoti Enterprises for Scaffolding Materials?</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-left text-gray-700">
+                <div class="flex items-start">
+                    <span class="text-2xl secondary-color-text mr-3">&#10003;</span>
+                    <div>
+                        <h3 class="font-semibold text-xl primary-color-text">Premium Quality & Safety</h3>
+                        <p>All materials meet stringent international safety standards, ensuring reliability and compliance on every project.</p>
+                    </div>
+                </div>
+                <div class="flex items-start">
+                    <span class="text-2xl secondary-color-text mr-3">&#10003;</span>
+                    <div>
+                        <h3 class="font-semibold text-xl primary-color-text">Exceptional Durability</h3>
+                        <p>Our galvanized and powder-coated options offer superior resistance to corrosion, guaranteeing a long lifespan for your scaffolding components.</p>
+                    </div>
+                </div>
+                <div class="flex items-start">
+                    <span class="text-2xl secondary-color-text mr-3">&#10003;</span>
+                    <div>
+                        <h3 class="font-semibold text-xl primary-color-text">Competitive Pricing</h3>
+                        <p>Benefit from the best market rates, coupled with attractive bulk discounts, to maximize your project budget efficiency.</p>
+                    </div>
+                </div>
+                <div class="flex items-start">
+                    <span class="text-2xl secondary-color-text mr-3">&#10003;</span>
+                    <div>
+                        <h3 class="font-semibold text-xl primary-color-text">Timely & Reliable Delivery</h3>
+                        <p>Our efficient logistics network ensures on-time material supply, keeping your construction timelines on track without delays.</p>
+                    </div>
+                </div>
+                <div class="flex items-start md:col-span-2">
+                    <span class="text-2xl secondary-color-text mr-3">&#10003;</span>
+                    <div>
+                        <h3 class="font-semibold text-xl primary-color-text">Expert Technical Support</h3>
+                        <p>Receive professional guidance on material selection and optimal usage, ensuring you choose the right products for your specific project requirements.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action Section -->
+        <section class="secondary-color-bg text-white py-16 px-4 md:px-8 text-center mt-12 rounded-lg mx-4 md:mx-auto max-w-5xl card-shadow">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Order Scaffolding Materials?</h2>
+            <p class="text-lg md:text-xl opacity-90 mb-8">
+                Contact our expert sales team today for pricing, availability, and exclusive bulk order discounts tailored to your project needs.
+            </p>
+            <a href="#contact" class="inline-block primary-color-bg text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-blue-800 transition-all duration-300 transform hover:scale-105 card-shadow">
+                Get a Custom Quote
+            </a>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="primary-color-bg text-white py-8 mt-12 rounded-t-lg">
+        <div class="container mx-auto px-4 md:px-8 text-center">
+            <div class="mb-4">
+                <h4 class="text-xl font-semibold mb-2">Jyoti Enterprises</h4>
+                <p class="text-gray-400">Scaffolding Solutions | Material Supply | Construction Services</p>
+            </div>
+            <div class="flex flex-col md:flex-row justify-center items-center space-y-2 md:space-y-0 md:space-x-8 text-sm text-gray-400">
+                <p>&copy; 2025 Jyoti Enterprises. All Rights Reserved.</p>
+                <a href="#" class="hover:text-white transition-colors duration-300">Privacy Policy</a>
+                <a href="#" class="hover:text-white transition-colors duration-300">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
