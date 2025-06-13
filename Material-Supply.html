@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jyoti Enterprises - Scaffolding Material Supply</title>
+    <style>
+        /* Reusing your existing color scheme */
+        :root {
+            --navy-blue: #003366;
+            --orange: #FF6600;
+            --light-gray: #f5f5f5;
+            --white: #ffffff;
+            --dark-gray: #333333;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--dark-gray);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--navy-blue);
+            color: var(--white);
+            padding: 1rem 0;
+            text-align: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .logo span {
+            color: var(--orange);
+        }
+        
+        nav {
+            background-color: var(--navy-blue);
+            padding: 0.5rem 0;
+        }
+        
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+        
+        nav ul li {
+            margin: 0 1rem;
+        }
+        
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            background-color: var(--orange);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        h1, h2, h3 {
+            color: var(--navy-blue);
+        }
+        
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            border-bottom: 2px solid var(--orange);
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+            margin: 2rem 0 1rem;
+            color: var(--orange);
+        }
+        
+        .material-section {
+            background-color: var(--light-gray);
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .material-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .material-card {
+            background-color: var(--white);
+            border-radius: 6px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-top: 4px solid var(--orange);
+        }
+        
+        .material-card h3 {
+            margin-top: 0;
+            color: var(--navy-blue);
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--orange);
+            color: var(--white);
+            padding: 0.7rem 1.5rem;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            margin-top: 1rem;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #e55c00;
+        }
+        
+        .contact-section {
+            text-align: center;
+            margin: 3rem 0;
+        }
+        
+        footer {
+            background-color: var(--navy-blue);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+        
+        .highlight {
+            color: var(--orange);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">JYOTI <span>ENTERPRISES</span></div>
+        <p>Your Trusted Scaffolding Solutions Provider</p>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#materials">Materials</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+    
+    <div class="container">
+        <h1>Scaffolding Material Supply</h1>
+        
+        <div class="material-section">
+            <h2>Our Premium Scaffolding Materials</h2>
+            <p>At Jyoti Enterprises, we provide high-quality scaffolding materials to meet all your construction needs. Our products are durable, safe, and compliant with industry standards.</p>
+            
+            <div class="material-grid">
+                <div class="material-card">
+                    <h3>Scaffolding Tubes</h3>
+                    <p>High-quality steel tubes available in various sizes (1.5m, 2m, 3m, etc.) with galvanized coating for corrosion resistance.</p>
+                    <p><span class="highlight">Available:</span> 48.3mm OD, 4mm thickness</p>
+                    <a href="#contact" class="btn">Enquire Now</a>
+                </div>
+                
+                <div class="material-card">
+                    <h3>Scaffolding Couplers</h3>
+                    <p>Durable couplers including right-angle couplers, swivel couplers, and sleeve couplers for secure connections.</p>
+                    <p><span class="highlight">Types:</span> Pressed steel, drop-forged steel</p>
+                    <a href="#contact" class="btn">Enquire Now</a>
+                </div>
+                
+                <div class="material-card">
+                    <h3>Scaffolding Boards</h3>
+                    <p>Solid timber or aluminum boards with non-slip surface, tested for strength and durability.</p>
+                    <p><span class="highlight">Standard:</span> 225mm wide, 38mm thick</p>
+                    <a href="#contact" class="btn">Enquire Now</a>
+                </div>
+                
+                <div class="material-card">
+                    <h3>Base Plates & Jacks</h3>
+                    <p>Adjustable base jacks and sturdy base plates for proper load distribution and stability.</p>
+                    <p><span class="highlight">Capacity:</span> Up to 5,000 kg</p>
+                    <a href="#contact" class="btn">Enquire Now</a>
+                </div>
+                
+                <div class="material-card">
+                    <h3>Safety Accessories</h3>
+                    <p>Complete range including guardrails, toe boards, safety nets, and debris nets for fall protection.</p>
+                    <p><span class="highlight">Compliant with:</span> OSHA standards</p>
+                    <a href="#contact" class="btn">Enquire Now</a>
+                </div>
+                
+                <div class="material-card">
+                    <h3>Mobile Scaffolding</h3>
+                    <p>Lightweight aluminum towers with locking castors for easy movement and height adjustment.</p>
+                    <p><span class="highlight">Max Height:</span> Up to 12m</p>
+                    <a href="#contact" class="btn">Enquire Now</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="material-section">
+            <h2>Why Choose Our Scaffolding Materials?</h2>
+            <ul>
+                <li><span class="highlight">Premium Quality:</span> All materials meet international safety standards</li>
+                <li><span class="highlight">Durability:</span> Galvanized and powder-coated options for long life</li>
+                <li><span class="highlight">Competitive Pricing:</span> Best market rates with bulk discounts</li>
+                <li><span class="highlight">Timely Delivery:</span> Efficient logistics for on-time supply</li>
+                <li><span class="highlight">Technical Support:</span> Expert advice on material selection and usage</li>
+            </ul>
+        </div>
+        
+        <div class="contact-section">
+            <h2>Ready to Order Scaffolding Materials?</h2>
+            <p>Contact our sales team for pricing, availability, and bulk order discounts.</p>
+            <a href="#contact" class="btn">Get a Quote</a>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2023 Jyoti Enterprises. All Rights Reserved.</p>
+        <p>Scaffolding Solutions | Material Supply | Construction Services</p>
+    </footer>
+</body>
+</html>
