@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scaffolding Product Catalogue | Jyoti Enterprises</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Font - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom CSS variables for exact color matching */
+        :root {
+            --navy-blue: #003366;
+            --orange: #FFA500;
+            --light-bg: #f8f8f8;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--light-bg);
+            color: #333; /* Dark gray text */
+            line-height: 1.6;
+        }
+
+        /* Custom Tailwind-like classes for consistent color application */
+        .primary-color-bg { background-color: var(--navy-blue); }
+        .primary-color-text { color: var(--navy-blue); }
+        .secondary-color-bg { background-color: var(--orange); }
+        .secondary-color-text { color: var(--orange); }
+
+        /* Custom class for a subtle shadow on cards and hero section */
+        .card-shadow {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Animations for hero section text */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in-down {
+            animation: fadeInDown 0.8s ease-out forwards;
+        }
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+            animation-delay: 0.2s; /* Delay for a staggered effect */
+        }
+
+        /* Custom hero background with gradient overlay */
+        .hero-bg {
+            background: linear-gradient(rgba(0, 51, 102, 0.8), rgba(0, 51, 102, 0.8)),
+                        url('https://placehold.co/1200x500/003366/FFA500?text=Scaffolding+Catalogue') no-repeat center center/cover;
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Product Grid Styles */
+        .product-grid {
+            display: grid;
+            /* Explicitly define 4 columns for large screens, adjust for smaller */
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); 
+            gap: 1.5rem; /* Reduced gap between cards for a more compact look */
+            padding: 2rem 0; /* Vertical padding within the grid section */
+            max-width: 1000px; /* Max width for the grid to comfortably fit 4 cards */
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Responsive adjustments for product grid columns */
+        @media (min-width: 1024px) { /* On large screens and up, ensure 4 columns */
+            .product-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        @media (max-width: 768px) { /* On medium screens (tablet), 3 columns */
+            .product-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 1.25rem;
+                max-width: 900px; /* Adjust max-width for better fit */
+            }
+        }
+        @media (max-width: 640px) { /* On small screens (mobile), 2 columns */
+            .product-grid {
+                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+                gap: 1rem;
+                padding: 1.5rem 0.5rem;
+            }
+        }
+
+        .product-card {
+            background-color: white;
+            border-radius: 0.75rem; /* Rounded corners for sharp look */
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1); /* Soft, prominent shadow */
+            overflow: hidden; /* Ensures image corners are rounded */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            width: 230px; /* Fixed width for card */
+            height: 360px; /* Fixed height for card */
+            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Enhanced transition for smoother, sharper feel */
+            cursor: pointer;
+            position: relative; /* For z-index on hover */
+        }
+
+        .product-card:hover {
+            transform: translateY(-20px) scale(1.05); /* Lifts higher and scales slightly more prominently */
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35); /* Stronger, sharper, more diffused shadow on hover */
+            z-index: 5; /* Bring hovered card to front */
+        }
+
+        .product-card img {
+            width: 100%; /* Image takes full width of card */
+            height: 140px; /* Adjusted height for consistent image size within smaller card */
+            object-fit: cover; /* Cover the area, cropping if necessary */
+            border-bottom: 3px solid var(--orange); /* Orange border at bottom of image */
+            transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), border-color 0.3s ease, border-width 0.3s ease; /* Smooth hover for image, add border-width */
+        }
+
+        .product-card:hover img {
+            transform: scale(1.1); /* Image scales more inside card on hover */
+            border-width: 5px; /* Border gets thicker on hover */
+            border-color: #ff8c00; /* Slightly darker orange on hover for border */
+        }
+
+        .product-card-content {
+            padding: 0.8rem; /* Adjusted padding */
+            display: flex;
+            flex-direction: column;
+            /* gap: 0.4rem; Removed explicit gap to allow more flexible spacing */
+            flex-grow: 1; /* Allows content to take available height */
+            justify-content: flex-start; /* Align content to the top */
+            width: 100%;
+        }
+
+        .product-card h3 {
+            font-size: 1.2rem; /* Adjusted product name font size for compact card */
+            font-weight: 700;
+            color: var(--navy-blue);
+            margin-bottom: 0.5rem; /* Increased margin for better separation */
+            line-height: 1.2;
+            overflow: hidden; /* Hide overflow */
+            text-overflow: ellipsis; /* Add ellipsis for long names */
+            display: -webkit-box; /* For multi-line ellipsis */
+            -webkit-line-clamp: 2; /* Limit to 2 lines */
+            -webkit-box-orient: vertical;
+        }
+
+        .product-card p {
+            font-size: 0.8rem; /* Adjusted description font size */
+            color: #555;
+            /* flex-grow: 1; Removed flex-grow to prevent description from pushing specs down too much */
+            line-height: 1.3;
+            margin-bottom: 0.75rem; /* Increased margin for better separation */
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2; /* Limit description to 2 lines for compactness */
+            -webkit-box-orient: vertical;
+        }
+
+        .product-card .specs {
+            font-size: 0.7rem; /* Adjusted specs font size */
+            color: #777;
+            text-align: left; /* Align specs to left within content */
+            width: 100%;
+            padding-left: 0.6rem; /* Adjusted padding */
+            margin-top: auto; /* Push specs section to the bottom */
+            border-top: 1px dashed #eee;
+            padding-top: 0.5rem; /* Adjusted padding */
+            line-height: 1.2;
+        }
+
+        .product-card .specs strong {
+            color: var(--navy-blue);
+            display: block; /* Make strong tag a block for better spacing */
+            margin-bottom: 0.2rem;
+            font-size: 0.75rem; /* Slightly larger for emphasis */
+        }
+        .product-card .specs ul {
+            list-style: disc; /* Use disc for bullet points */
+            margin-left: 0.8em; /* Indent bullet points */
+            padding-left: 0; /* Remove default padding */
+        }
+        .product-card .specs li {
+            margin-bottom: 0.1em; /* Small space between list items */
+        }
+
+        /* Removed .product-card-button styles as button is removed */
+
+        /* Animations for sections below the product grid (keeping staggered fade-in) */
+        @keyframes fadeInRise {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animated-section-item {
+            opacity: 0;
+            animation: fadeInRise 0.6s ease-out forwards;
+        }
+        /* Stagger for "Why Choose Us" section - needs to be precise with nth-child */
+        .animated-section-item:nth-child(1) { animation-delay: 0.1s; }
+        .animated-section-item:nth-child(2) { animation-delay: 0.2s; }
+        .animated-section-item:nth-child(3) { animation-delay: 0.3s; }
+        .animated-section-item:nth-child(4) { animation-delay: 0.4s; }
+        .animated-section-item:nth-child(5) { animation-delay: 0.5s; }
+        .animated-section-item:nth-child(6) { animation-delay: 0.6s; }
+
+        /* Initial load animation for individual product cards */
+        @keyframes fadeInProduct {
+            from { opacity: 0; transform: translateY(40px) scale(0.9); } /* Start slightly smaller and lower */
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .animate-product-card {
+            opacity: 0;
+            animation: fadeInProduct 0.7s ease-out forwards; /* Slightly longer animation */
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+    <!-- Header/Navigation -->
+    <header class="bg-white card-shadow py-4">
+        <div class="container mx-auto px-4 md:px-8 flex flex-col md:flex-row items-center justify-between">
+            <a href="index.html" class="text-2xl md:text-3xl font-bold primary-color-text mb-4 md:mb-0 transform hover:scale-105 transition-transform duration-300 motion-reduce:transform-none">
+                Jyoti <span class="secondary-color-text">Enterprises</span>
+            </a>
+            <nav>
+                <ul class="flex space-x-6 md:space-x-8 text-lg font-medium">
+                    <li><a href="index.html" class="hover:primary-color-text transition-colors duration-300">Home</a></li>
+                    <li><a href="manufacturing.html" class="hover:primary-color-text transition-colors duration-300">Manufacturing</a></li>
+                    <li><a href="products.html" class="hover:primary-color-text transition-colors duration-300">Products</a></li>
+                    <li><a href="quality.html" class="hover:primary-color-text transition-colors duration-300">Quality</a></li>
+                    <li><a href="faq.html" class="hover:primary-color-text transition-colors duration-300">FAQ</a></li>
+                    <li><a href="careers.html" class="hover:primary-color-text transition-colors duration-300">Careers</a></li>
+                    <li><a href="projects.html" class="hover:primary-color-text transition-colors duration-300">Projects</a></li>
+                    <li><a href="testimonials.html" class="hover:primary-color-text transition-colors duration-300">Testimonials</a></li>
+                    <li><a href="industries.html" class="hover:primary-color-text transition-colors duration-300">Industries</a></li>
+                    <li><a href="contact.html" class="hover:primary-color-text transition-colors duration-300">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Product Catalogue Hero Section -->
+    <section class="hero-bg text-white py-20 px-4 md:px-8 text-center rounded-b-lg mb-12">
+        <div class="container mx-auto">
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-4 animate-fade-in-down">
+                Scaffolding Product Catalogue
+            </h1>
+            <p class="text-lg md:text-xl opacity-90 mb-8 max-w-3xl mx-auto animate-fade-in-up">
+                Explore our comprehensive range of high-quality scaffolding parts and materials, engineered for safety, durability, and performance.
+            </p>
+            <a href="#product-listings" class="inline-block secondary-color-bg text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-orange-600 transition-all duration-300 transform hover:scale-105 card-shadow">
+                View Products
+            </a>
+        </div>
+    </section>
+
+    <!-- Product Listings Section -->
+    <section id="product-listings" class="py-12 px-4 md:px-8">
+        <div class="container mx-auto"> <!-- Outer container for max-width -->
+            <h2 class="text-3xl md:text-4xl font-bold text-center primary-color-text mb-10 relative after:content-[''] after:block after:w-20 after:h-1 after:bg-orange-500 after:mx-auto after:mt-2">
+                Our Range of Scaffolding Components
+            </h2>
+            <p class="text-lg text-gray-700 text-center mb-12 max-w-3xl mx-auto">
+                From essential structural elements to advanced safety accessories, find the perfect components for your construction needs.
+            </p>
+
+            <div class="product-grid" id="productGrid">
+                <!-- Product cards will be dynamically generated by JavaScript here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Our Products Section -->
+    <section class="py-16 px-4 md:px-8 bg-blue-50 mt-12">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-bold primary-color-text mb-10 relative after:content-[''] after:block after:w-20 after:h-1 after:bg-orange-500 after:mx-auto after:mt-2">
+                Why Choose Jyoti Enterprises Scaffolding?
+            </h2>
+            <p class="text-lg text-gray-700 mb-12 max-w-3xl mx-auto">
+                We are committed to providing top-tier products that ensure safety, efficiency, and reliability on every project.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
+                <div class="bg-white p-6 rounded-lg card-shadow text-center animated-section-item">
+                    <span class="text-5xl secondary-color-text mb-4 inline-block">🛠️</span>
+                    <h3 class="text-xl font-semibold primary-color-text mb-2">Superior Quality Materials</h3>
+                    <p class="text-gray-700">All components are manufactured using high-grade steel and advanced processes for maximum strength and durability.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg card-shadow text-center animated-section-item">
+                    <span class="text-5xl secondary-color-text mb-4 inline-block">✅</span>
+                    <h3 class="text-xl font-semibold primary-color-text mb-2">Certified Safety Standards</h3>
+                    <p class="text-gray-700">Our products meet international safety regulations, providing a secure working environment for your team.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg card-shadow text-center animated-section-item">
+                    <span class="text-5xl secondary-color-text mb-4 inline-block">⚙️</span>
+                    <h3 class="text-xl font-semibold primary-color-text mb-2">Versatile & Compatible</h3>
+                    <p class="text-gray-700">Designed for easy assembly and compatibility with various scaffolding systems, ensuring flexibility for diverse projects.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg card-shadow text-center animated-section-item">
+                    <span class="text-5xl secondary-color-text mb-4 inline-block">⏱️</span>
+                    <h3 class="text-xl font-semibold primary-color-text mb-2">Exceptional Durability</h3>
+                    <p class="text-gray-700">Built to withstand harsh construction environments, guaranteeing a long lifespan and reduced maintenance costs.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg card-shadow text-center animated-section-item">
+                    <span class="text-5xl secondary-color-text mb-4 inline-block">🤝</span>
+                    <h3 class="text-xl font-semibold primary-color-text mb-2">Reliable Supply & Support</h3>
+                    <p class="text-gray-700">Benefit from our efficient logistics and dedicated customer support, ensuring timely delivery and assistance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section id="contact-us" class="secondary-color-bg text-white py-16 px-4 md:px-8 text-center mt-12 rounded-lg mx-4 md:mx-auto max-w-5xl card-shadow">
+        <div class="container mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Need a Custom Scaffolding Solution?</h2>
+            <p class="text-lg md:text-xl opacity-90 mb-8">
+                Our experts are ready to assist you with tailored scaffolding solutions for your specific project requirements.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
+                <a href="tel:+919876543210" class="inline-block primary-color-bg text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-blue-800 transition-all duration-300 transform hover:scale-105 card-shadow">
+                    Call Our Team
+                </a>
+                <a href="mailto:info@jyotienterprises.com" class="inline-block bg-white text-orange-500 border-2 border-orange-500 px-8 py-4 rounded-full text-lg font-semibold hover:bg-orange-50 hover:text-white transition-all duration-300 transform hover:scale-105 card-shadow">
+                    Send An Inquiry
+                </a>
+            </div>
+        </div>
+    </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="primary-color-bg text-white py-8 mt-12 rounded-t-lg">
+        <div class="container mx-auto px-4 md:px-8 text-center">
+            <div class="mb-4">
+                <h4 class="text-xl font-semibold mb-2">Jyoti Enterprises</h4>
+                <p class="text-gray-400">Your Partner in Manufacturing, Supply & Logistics</p>
+            </div>
+            <div class="flex flex-col md:flex-row justify-center items-center space-y-2 md:space-y-0 md:space-x-8 text-sm text-gray-400">
+                <p>&copy; 2025 Jyoti Enterprises. All Rights Reserved.</p>
+                <a href="#" class="hover:text-white transition-colors duration-300">Privacy Policy</a>
+                <a href="#" class="hover:text-white transition-colors duration-300">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const products = [
+                {
+                    name: "Vertical Standard",
+                    specs: ["Material: Galvanized Steel", "Height: 1-3m", "Usage: Main vertical support"],
+                    imgText: "Standard"
+                },
+                {
+                    name: "Horizontal Ledger",
+                    specs: ["Material: Galvanized Steel", "Length: 0.5-3m", "Usage: Connects standards horizontally"],
+                    imgText: "Ledger"
+                },
+                {
+                    name: "Diagonal Brace",
+                    specs: ["Material: Steel Alloy", "Length: Various", "Usage: Provides stability against sway"],
+                    imgText: "Brace"
+                },
+                {
+                    name: "Base Plate",
+                    specs: ["Material: Steel", "Size: 150x150mm", "Usage: Spreads load at base"],
+                    imgText: "BasePlate"
+                },
+                {
+                    name: "Adjustable Base Jack",
+                    specs: ["Material: Steel", "Adjustment: 300-600mm", "Usage: Leveling on uneven ground"],
+                    imgText: "BaseJack"
+                },
+                {
+                    name: "Swivel Coupler",
+                    specs: ["Material: Drop Forged Steel", "Type: Swivel", "Usage: Connects tubes at any angle"],
+                    imgText: "Swivel"
+                },
+                {
+                    name: "Fixed Coupler",
+                    specs: ["Material: Pressed Steel", "Type: Fixed", "Usage: Connects tubes at 90 degrees"],
+                    imgText: "Fixed"
+                },
+                {
+                    name: "Board Clamp",
+                    specs: ["Material: Steel", "Usage: Secures scaffold boards"],
+                    imgText: "BoardClamp"
+                },
+                {
+                    name: "Toe Board Clip",
+                    specs: ["Material: Steel", "Usage: Holds toe boards in place"],
+                    imgText: "ToeBoard"
+                },
+                {
+                    name: "Ladder Beam",
+                    specs: ["Material: Aluminum", "Length: 2-6m", "Usage: Creates openings or spans"],
+                    imgText: "LadderBeam"
+                },
+                {
+                    name: "Steel Plank",
+                    specs: ["Material: Galvanized Steel", "Length: 1-3m", "Usage: Working platform"],
+                    imgText: "SteelPlank"
+                },
+                {
+                    name: "Aluminum Ladder",
+                    specs: ["Material: Aluminum", "Height: Various", "Usage: Access to different levels"],
+                    imgText: "Ladder"
+                },
+                {
+                    name: "Guardrail Post",
+                    specs: ["Material: Steel", "Height: 1m", "Usage: Supports guardrails"],
+                    imgText: "Guardrail"
+                },
+                {
+                    name: "Tie Bar",
+                    specs: ["Material: Steel", "Usage: Reinforces scaffold structures"],
+                    imgText: "TieBar"
+                },
+                {
+                    name: "Putlog Coupler",
+                    specs: ["Material: Steel", "Usage: Connects putlogs to ledgers"],
+                    imgText: "Putlog"
+                },
+                {
+                    name: "Sleeve Coupler",
+                    specs: ["Material: Steel", "Usage: Joins two tubes end-to-end"],
+                    imgText: "Sleeve"
+                },
+                {
+                    name: "Joint Pin",
+                    specs: ["Material: Steel", "Usage: Internal connection for standards"],
+                    imgText: "JointPin"
+                },
+                {
+                    name: "Drop Forged Coupler",
+                    specs: ["Material: Forged Steel", "High Strength", "Usage: Heavy duty connections"],
+                    imgText: "ForgedCoupler"
+                },
+                {
+                    name: "Pressed Steel Coupler",
+                    specs: ["Material: Pressed Steel", "Standard Duty", "Usage: General connections"],
+                    imgText: "PressedCoupler"
+                },
+                {
+                    name: "Ringlock Vertical",
+                    specs: ["System: Ringlock", "Height: 1-3m", "Usage: Main vertical for Ringlock system"],
+                    imgText: "RinglockV"
+                },
+                {
+                    name: "Ringlock Horizontal",
+                    specs: ["System: Ringlock", "Length: 0.5-3m", "Usage: Horizontal for Ringlock system"],
+                    imgText: "RinglockH"
+                },
+                {
+                    name: "Cuplock Standard",
+                    specs: ["System: Cuplock", "Height: 1-3m", "Usage: Main vertical for Cuplock system"],
+                    imgText: "CuplockS"
+                },
+                {
+                    name: "Cuplock Ledger",
+                    specs: ["System: Cuplock", "Length: 0.5-3m", "Usage: Horizontal for Cuplock system"],
+                    imgText: "CuplockL"
+                },
+                {
+                    name: "Walkthrough Frame",
+                    specs: ["Type: Frame Scaffolding", "Width: 1.2m", "Usage: Creates passage ways"],
+                    imgText: "WalkFrame"
+                },
+                {
+                    name: "Ladder Frame",
+                    specs: ["Type: Frame Scaffolding", "Built-in Ladder", "Usage: Integrated access"],
+                    imgText: "LadderFrame"
+                },
+                {
+                    name: "Castor Wheel",
+                    specs: ["Material: Rubber/Steel", "Size: 200mm", "Usage: Mobile scaffolding"],
+                    imgText: "Castor"
+                },
+                {
+                    name: "Facade Scaffolding Panel",
+                    specs: ["System: Facade", "Width: 0.7m", "Usage: Exterior building work"],
+                    imgText: "Facade"
+                },
+                 {
+                    name: "Adjustable U-Head Jack",
+                    specs: ["Material: Steel", "Adjustment: 300-600mm", "Usage: Supports bearers under formwork"],
+                    imgText: "UHead"
+                },
+                {
+                    name: "Props (Adjustable)",
+                    specs: ["Type: Acrow Prop", "Height: 1.7m-4.8m", "Usage: Vertical support for slabs"],
+                    imgText: "Prop"
+                },
+                {
+                    name: "Bridge Support System",
+                    specs: ["Application: Heavy Duty", "Load Capacity: High", "Usage: Supports bridge construction"],
+                    imgText: "BridgeSupport"
+                },
+                {
+                    name: "System Bracing",
+                    specs: ["Type: Diagonal", "System: Universal", "Usage: Enhances structural rigidity"],
+                    imgText: "SystemBrace"
+                },
+                {
+                    name: "Loading Bay Tower",
+                    specs: ["Structure: Modular", "Capacity: Heavy Load", "Usage: Material handling access"],
+                    imgText: "LoadingBay"
+                },
+                {
+                    name: "Stair Tower",
+                    specs: ["Structure: Modular", "Access: Safe Vertical", "Usage: Easy access between levels"],
+                    imgText: "StairTower"
+                },
+                {
+                    name: "Formwork Clamp",
+                    specs: ["Material: Steel", "Usage: Secures formwork panels"],
+                    imgText: "FormworkClamp"
+                },
+                {
+                    name: "Cross Brace (X-Brace)",
+                    specs: ["Material: Galvanized Steel", "Usage: Stabilizes frames diagonally"],
+                    imgText: "CrossBrace"
+                },
+                {
+                    name: "Horizontal Transom",
+                    specs: ["Material: Steel", "Usage: Supports boards, connects uprights"],
+                    imgText: "Transom"
+                },
+                {
+                    name: "Putlog",
+                    specs: ["Material: Steel", "Usage: Supports scaffold boards directly"],
+                    imgText: "Putlog"
+                },
+                {
+                    name: "Steel Ladder Clamp",
+                    specs: ["Material: Steel", "Usage: Secures ladders to scaffolding"],
+                    imgText: "LadderClamp"
+                },
+                {
+                    name: "Gable End Frame",
+                    specs: ["Type: Special Frame", "Usage: Adapts to sloped roofs/walls"],
+                    imgText: "GableFrame"
+                },
+                {
+                    name: "Access Hatch Plank",
+                    specs: ["Material: Aluminum/Plywood", "Feature: Built-in Hatch", "Usage: Internal access point"],
+                    imgText: "HatchPlank"
+                },
+                {
+                    name: "Scaffold Tag Holder",
+                    specs: ["Material: Plastic", "Visibility: High", "Usage: Displays inspection status"],
+                    imgText: "TagHolder"
+                },
+                {
+                    name: "Debris Netting",
+                    specs: ["Material: HDPE", "Safety: Debris Containment", "Usage: Prevents falling objects"],
+                    imgText: "DebrisNet"
+                },
+                {
+                    name: "Hoarding Clamp",
+                    specs: ["Material: Steel", "Usage: Attaches hoarding panels"],
+                    imgText: "Hoarding"
+                },
+                {
+                    name: "Shoring System Prop",
+                    specs: ["Application: Heavy Load", "Type: Adjustable", "Usage: Temporary support for structures"],
+                    imgText: "ShoringProp"
+                },
+                {
+                    name: "Prop Head",
+                    specs: ["Material: Steel", "Usage: Top attachment for props"],
+                    imgText: "PropHead"
+                },
+                {
+                    name: "Column Clamp",
+                    specs: ["Material: Steel", "Usage: Clamping for concrete columns"],
+                    imgText: "ColumnClamp"
+                },
+                {
+                    name: "Beam Clamp",
+                    specs: ["Material: Steel", "Usage: Attaches scaffolding to beams"],
+                    imgText: "BeamClamp"
+                },
+                {
+                    name: "Tube & Coupler System",
+                    specs: ["Versatile: Highly Adaptable", "Components: Tubes & Couplers", "Usage: Custom scaffold designs"],
+                    imgText: "TubeCoupler"
+                },
+                {
+                    name: "Unitized Scaffold",
+                    specs: ["Type: Prefabricated", "Assembly: Rapid", "Usage: Large scale, repetitive structures"],
+                    imgText: "Unitized"
+                },
+                {
+                    name: "Safety Netting",
+                    specs: ["Material: Polypropylene", "Feature: Fall Arrest", "Usage: Worker fall protection"],
+                    imgText: "SafetyNet"
+                },
+                {
+                    name: "Scaffold Wheel with Brake",
+                    specs: ["Material: Heavy Duty", "Feature: Lockable", "Usage: Secure mobile towers"],
+                    imgText: "BrakeWheel"
+                },
+                {
+                    name: "Walkway Plank",
+                    specs: ["Material: Aluminum", "Surface: Anti-slip", "Usage: Safe passage on scaffolding"],
+                    imgText: "Walkway"
+                }
+            ];
+
+            const productGrid = document.getElementById('productGrid');
+            
+            products.forEach((product, index) => {
+                const productCard = document.createElement('div');
+                productCard.classList.add('product-card', 'animate-product-card');
+                productCard.style.animationDelay = `${(index * 0.08)}s`; /* Staggered animation */
+                // The description in the object is short; using it directly.
+                // If you want a more generic description, you can uncomment the original line below.
+                const productDescription = `A durable and essential component for ${product.name.toLowerCase()} scaffolding needs.`;
+
+                productCard.innerHTML = `
+                    <img src="https://placehold.co/300x200/003366/FFA500?text=${encodeURIComponent(product.imgText.replace(/ /g, '+'))}" alt="${product.name}">
+                    <div class="product-card-content">
+                        <h3>${product.name}</h3>
+                        <p>${productDescription}</p>
+                        <div class="specs">
+                            <strong>Specifications:</strong>
+                            <ul>
+                                ${product.specs.map(spec => `<li>${spec}</li>`).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                `;
+                productGrid.appendChild(productCard);
+            });
+
+            // Intersection Observer for fade-in-rise animation for sections below the product grid
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1 // Trigger when 10% of the element is visible
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, observerOptions);
+
+            // Apply observer to all elements with 'animated-section-item' class
+            document.querySelectorAll('.animated-section-item').forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>
