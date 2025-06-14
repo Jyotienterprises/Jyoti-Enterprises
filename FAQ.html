@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jyoti Enterprises - Frequently Asked Questions</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Font - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom CSS variables for exact color matching */
+        :root {
+            --navy-blue: #002366;
+            --orange: #FF8C00;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f8f8; /* Light gray background */
+            color: #333; /* Dark gray text */
+        }
+
+        /* Custom Tailwind-like classes for consistent color application */
+        .primary-color-bg { background-color: var(--navy-blue); }
+        .primary-color-text { color: var(--navy-blue); }
+        .secondary-color-bg { background-color: var(--orange); }
+        .secondary-color-text { color: var(--orange); }
+
+        /* Custom class for a subtle shadow on cards and hero section */
+        .card-shadow {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Animations for hero section text */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in-down {
+            animation: fadeInDown 0.8s ease-out forwards;
+        }
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+            animation-delay: 0.2s; /* Delay for a staggered effect */
+        }
+
+        /* Custom hero background with gradient overlay */
+        .hero-bg {
+            background: linear-gradient(rgba(0, 35, 102, 0.8), rgba(0, 35, 102, 0.8)),
+                        url('https://placehold.co/1200x500/002366/FF8C00?text=FAQs') no-repeat center center/cover;
+        }
+
+        /* Specific styles for FAQ accordion toggle icon */
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-question.active::after {
+            content: '-';
+            transform: rotate(0deg); /* Explicitly set for smooth transition */
+        }
+
+        /* Control max-height for smooth accordion animation */
+        .faq-answer.show {
+            max-height: 500px; /* Adjust as needed for content length */
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+    <!-- Header/Navigation -->
+    <header class="bg-white card-shadow py-4">
+        <div class="container mx-auto px-4 md:px-8 flex flex-col md:flex-row items-center justify-between">
+            <a href="index.html" class="text-2xl md:text-3xl font-bold primary-color-text mb-4 md:mb-0">
+                Jyoti <span class="secondary-color-text">Enterprises</span>
+            </a>
+            <nav>
+                <ul class="flex space-x-6 md:space-x-8 text-lg font-medium">
+                    <li><a href="index.html" class="hover:primary-color-text transition-colors duration-300">Home</a></li>
+                    <li><a href="manufacturing.html" class="hover:primary-color-text transition-colors duration-300">Manufacturing</a></li>
+                    <li><a href="products.html" class="hover:primary-color-text transition-colors duration-300">Products</a></li>
+                    <li><a href="quality.html" class="hover:primary-color-text transition-colors duration-300">Quality</a></li>
+                    <li><a href="faq.html" class="primary-color-text font-semibold transition-colors duration-300">FAQ</a></li>
+                    <li><a href="contact.html" class="hover:primary-color-text transition-colors duration-300">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- FAQ Hero Section -->
+    <section class="hero-bg text-white py-20 px-4 md:px-8 text-center rounded-b-lg mb-12">
+        <div class="container mx-auto">
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-4 animate-fade-in-down">
+                Frequently Asked Questions
+            </h1>
+            <p class="text-lg md:text-xl opacity-90 mb-8 max-w-3xl mx-auto animate-fade-in-up">
+                Find answers to common questions about our products, services, and manufacturing capabilities.
+            </p>
+        </div>
+    </section>
+
+    <!-- FAQ Content Section -->
+    <section class="py-12 px-4 md:px-8">
+        <div class="container mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center primary-color-text mb-10 relative after:content-[''] after:block after:w-20 after:h-1 after:bg-orange-500 after:mx-auto after:mt-2">
+                Common Questions
+            </h2>
+
+            <!-- FAQ Categories -->
+            <div class="flex flex-wrap justify-center mb-8 gap-4">
+                <button class="category-btn bg-gray-100 text-gray-800 px-5 py-2 rounded-md transition-all duration-300 hover:bg-orange-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-orange-400 active:bg-orange-500 active:text-white font-medium" data-category="all">All Questions</button>
+                <button class="category-btn bg-gray-100 text-gray-800 px-5 py-2 rounded-md transition-all duration-300 hover:bg-orange-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-orange-400 font-medium" data-category="products">Products</button>
+                <button class="category-btn bg-gray-100 text-gray-800 px-5 py-2 rounded-md transition-all duration-300 hover:bg-orange-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-orange-400 font-medium" data-category="manufacturing">Manufacturing</button>
+                <button class="category-btn bg-gray-100 text-gray-800 px-5 py-2 rounded-md transition-all duration-300 hover:bg-orange-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-orange-400 font-medium" data-category="quality">Quality</button>
+                <button class="category-btn bg-gray-100 text-gray-800 px-5 py-2 rounded-md transition-all duration-300 hover:bg-orange-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-orange-400 font-medium" data-category="ordering">Ordering</button>
+            </div>
+
+            <!-- FAQ Items -->
+            <div class="max-w-4xl mx-auto">
+                <!-- Product Questions -->
+                <div class="faq-item mb-6 border border-gray-200 rounded-lg overflow-hidden card-shadow" data-category="products">
+                    <div class="faq-question primary-color-bg text-white p-4 cursor-pointer font-bold flex justify-between items-center transition-colors duration-300 hover:bg-blue-900 rounded-t-lg">
+                        What types of fasteners do you manufacture?
+                    </div>
+                    <div class="faq-answer px-4 pt-0 pb-4 max-h-0 overflow-hidden transition-all duration-300 ease-out bg-white">
+                        <p class="py-4">Jyoti Enterprises manufactures a wide range of fasteners including bolts, nuts, screws, washers, and special fasteners. Our product range includes standard fasteners as well as custom-designed fasteners for specific industrial applications. We use various materials including stainless steel, carbon steel, and alloy steel to meet different requirements.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item mb-6 border border-gray-200 rounded-lg overflow-hidden card-shadow" data-category="products">
+                    <div class="faq-question primary-color-bg text-white p-4 cursor-pointer font-bold flex justify-between items-center transition-colors duration-300 hover:bg-blue-900 rounded-t-lg">
+                        Can you produce custom fasteners according to our specifications?
+                    </div>
+                    <div class="faq-answer px-4 pt-0 pb-4 max-h-0 overflow-hidden transition-all duration-300 ease-out bg-white">
+                        <p class="py-4">Yes, we specialize in custom fastener manufacturing. Our engineering team can work with your specifications to design and produce fasteners that meet your exact requirements, including unique dimensions, materials, threading, and head styles. We have the capability to create prototypes for testing before full-scale production.</p>
+                    </div>
+                </div>
+
+                <!-- Manufacturing Questions -->
+                <div class="faq-item mb-6 border border-gray-200 rounded-lg overflow-hidden card-shadow" data-category="manufacturing">
+                    <div class="faq-question primary-color-bg text-white p-4 cursor-pointer font-bold flex justify-between items-center transition-colors duration-300 hover:bg-blue-900 rounded-t-lg">
+                        What manufacturing capabilities do you have?
+                    </div>
+                    <div class="faq-answer px-4 pt-0 pb-4 max-h-0 overflow-hidden transition-all duration-300 ease-out bg-white">
+                        <p class="py-4">Our manufacturing facility includes state-of-the-art CNC machines, cold forging equipment, thread rolling machines, and heat treatment facilities. We have capabilities for both small batch production and high-volume manufacturing. Our quality control processes ensure that all fasteners meet specified standards and tolerances.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item mb-6 border border-gray-200 rounded-lg overflow-hidden card-shadow" data-category="manufacturing">
+                    <div class="faq-question primary-color-bg text-white p-4 cursor-pointer font-bold flex justify-between items-center transition-colors duration-300 hover:bg-blue-900 rounded-t-lg">
+                        What materials do you work with?
+                    </div>
+                    <div class="faq-answer px-4 pt-0 pb-4 max-h-0 overflow-hidden transition-all duration-300 ease-out bg-white">
+                        <p class="py-4">We work with a variety of materials including:
+                            <ul class="list-disc list-inside ml-4 mt-2">
+                                <li>Stainless Steel (SS 304, SS 316, etc.)</li>
+                                <li>Carbon Steel (Grade 4.6, 8.8, 10.9, 12.9)</li>
+                                <li>Alloy Steel</li>
+                                <li>Brass</li>
+                                <li>Aluminum</li>
+                                <li>Special alloys upon request</li>
+                            </ul>
+                            <span class="block mt-2">We can also provide various surface treatments like zinc plating, hot dip galvanizing, and more.</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Quality Questions -->
+                <div class="faq-item mb-6 border border-gray-200 rounded-lg overflow-hidden card-shadow" data-category="quality">
+                    <div class="faq-question primary-color-bg text-white p-4 cursor-pointer font-bold flex justify-between items-center transition-colors duration-300 hover:bg-blue-900 rounded-t-lg">
+                        What quality certifications do you hold?
+                    </div>
+                    <div class="faq-answer px-4 pt-0 pb-4 max-h-0 overflow-hidden transition-all duration-300 ease-out bg-white">
+                        <p class="py-4">Jyoti Enterprises is committed to quality excellence. We hold ISO 9001:2015 certification and our products meet international standards including DIN, ANSI, BS, and IS specifications. We have in-house testing facilities for dimensional checks, mechanical properties testing, and surface treatment verification.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item mb-6 border border-gray-200 rounded-lg overflow-hidden card-shadow" data-category="quality">
+                    <div class="faq-question primary-color-bg text-white p-4 cursor-pointer font-bold flex justify-between items-center transition-colors duration-300 hover:bg-blue-900 rounded-t-lg">
+                        How do you ensure product quality?
+                    </div>
+                    <div class="faq-answer px-4 pt-0 pb-4 max-h-0 overflow-hidden transition-all duration-300 ease-out bg-white">
+                        <p class="py-4">Our quality assurance process includes:
+                            <ul class="list-disc list-inside ml-4 mt-2">
+                                <li>Raw material inspection</li>
+                                <li>In-process quality checks at every production stage</li>
+                                <li>Final inspection before packaging</li>
+                                <li>Batch testing for mechanical properties</li>
+                                <li>Traceability systems for all products</li>
+                            </ul>
+                            <span class="block mt-2">We also welcome third-party inspections and can provide material test certificates for all shipments.</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Ordering Questions -->
+                <div class="faq-item mb-6 border border-gray-200 rounded-lg overflow-hidden card-shadow" data-category="ordering">
+                    <div class="faq-question primary-color-bg text-white p-4 cursor-pointer font-bold flex justify-between items-center transition-colors duration-300 hover:bg-blue-900 rounded-t-lg">
+                        What is your minimum order quantity (MOQ)?
+                    </div>
+                    <div class="faq-answer px-4 pt-0 pb-4 max-h-0 overflow-hidden transition-all duration-300 ease-out bg-white">
+                        <p class="py-4">Our standard MOQ is 1,000 pieces per item, but we can accommodate smaller quantities for sample orders or testing purposes. For custom fasteners, the MOQ may vary depending on the complexity of the product and tooling requirements. Please contact our sales team for specific MOQ information related to your needs.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item mb-6 border border-gray-200 rounded-lg overflow-hidden card-shadow" data-category="ordering">
+                    <div class="faq-question primary-color-bg text-white p-4 cursor-pointer font-bold flex justify-between items-center transition-colors duration-300 hover:bg-blue-900 rounded-t-lg">
+                        What are your delivery times?
+                    </div>
+                    <div class="faq-answer px-4 pt-0 pb-4 max-h-0 overflow-hidden transition-all duration-300 ease-out bg-white">
+                        <p class="py-4">Standard products from our inventory typically ship within 3-5 working days. For made-to-order products, lead times range from 2-6 weeks depending on the order quantity, product complexity, and current production schedule. We provide estimated delivery timelines at the time of order confirmation and keep customers updated on any changes.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item mb-6 border border-gray-200 rounded-lg overflow-hidden card-shadow" data-category="ordering">
+                    <div class="faq-question primary-color-bg text-white p-4 cursor-pointer font-bold flex justify-between items-center transition-colors duration-300 hover:bg-blue-900 rounded-t-lg">
+                        Do you export internationally?
+                    </div>
+                    <div class="faq-answer px-4 pt-0 pb-4 max-h-0 overflow-hidden transition-all duration-300 ease-out bg-white">
+                        <p class="py-4">Yes, we regularly export our products to various countries. We have experience with international shipping logistics, customs documentation, and compliance with import regulations in different markets. Our export team can guide you through the entire process and help arrange shipping according to your preferences.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item mb-6 border border-gray-200 rounded-lg overflow-hidden card-shadow" data-category="ordering">
+                    <div class="faq-question primary-color-bg text-white p-4 cursor-pointer font-bold flex justify-between items-center transition-colors duration-300 hover:bg-blue-900 rounded-t-lg">
+                        What packaging options do you offer?
+                    </div>
+                    <div class="faq-answer px-4 pt-0 pb-4 max-h-0 overflow-hidden transition-all duration-300 ease-out bg-white">
+                        <p class="py-4">We offer multiple packaging options to suit different needs:
+                            <ul class="list-disc list-inside ml-4 mt-2">
+                                <li>Standard carton boxes</li>
+                                <li>Wooden cases for heavy shipments</li>
+                                <li>Vacuum packing for corrosion-sensitive items</li>
+                                <li>Customer-specific packaging requirements</li>
+                                <li>Bulk packaging for large quantities</li>
+                            </ul>
+                            <span class="block mt-2">All packaging is designed to protect products during transit and storage.</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact CTA -->
+    <section class="secondary-color-bg text-white py-16 px-4 md:px-8 text-center mt-12 rounded-lg mx-4 md:mx-auto max-w-5xl card-shadow">
+        <div class="container mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Still have questions?</h2>
+            <p class="text-lg md:text-xl opacity-90 mb-8">
+                Our team is ready to help with any additional questions you may have about our products and services.
+            </p>
+            <a href="contact.html" class="inline-block primary-color-bg text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-blue-800 transition-all duration-300 transform hover:scale-105 card-shadow">
+                Contact Us
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="primary-color-bg text-white py-8 mt-12 rounded-t-lg">
+        <div class="container mx-auto px-4 md:px-8 text-center">
+            <div class="mb-4">
+                <h4 class="text-xl font-semibold mb-2">Jyoti Enterprises</h4>
+                <p class="text-gray-400">Precision fastener manufacturing and engineering solutions since 1995.</p>
+            </div>
+            <div class="flex flex-col md:flex-row justify-center items-center space-y-2 md:space-y-0 md:space-x-8 text-sm text-gray-400">
+                <p>&copy; 2025 Jyoti Enterprises. All Rights Reserved.</p>
+                <a href="#" class="hover:text-white transition-colors duration-300">Privacy Policy</a>
+                <a href="#" class="hover:text-white transition-colors duration-300">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ Accordion Functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const isActive = question.classList.contains('active');
+
+                // Close all answers
+                document.querySelectorAll('.faq-answer').forEach(ans => {
+                    ans.classList.remove('show');
+                    ans.previousElementSibling.classList.remove('active'); // Remove active from question
+                });
+
+                // Open current answer if it wasn't active
+                if (!isActive) {
+                    answer.classList.add('show');
+                    question.classList.add('active');
+                }
+            });
+        });
+
+        // FAQ Category Filter
+        document.querySelectorAll('.category-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const category = btn.dataset.category;
+
+                // Update active button
+                document.querySelectorAll('.category-btn').forEach(b => {
+                    b.classList.remove('active');
+                    // Ensure Tailwind's classes are properly toggled for appearance
+                    b.classList.remove('bg-orange-500', 'text-white');
+                    b.classList.add('bg-gray-100', 'text-gray-800');
+                });
+                btn.classList.add('active');
+                // Ensure Tailwind's classes are properly toggled for appearance
+                btn.classList.remove('bg-gray-100', 'text-gray-800');
+                btn.classList.add('bg-orange-500', 'text-white');
+
+                // Filter FAQs and close all open answers
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    const answer = item.querySelector('.faq-answer');
+                    const question = item.querySelector('.faq-question');
+
+                    // Close all answers regardless of category change
+                    answer.classList.remove('show');
+                    question.classList.remove('active');
+
+                    if (category === 'all' || item.dataset.category === category) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Initialize "All Questions" button as active on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            const allBtn = document.querySelector('.category-btn[data-category="all"]');
+            if (allBtn) {
+                allBtn.classList.add('active');
+                allBtn.classList.remove('bg-gray-100', 'text-gray-800');
+                allBtn.classList.add('bg-orange-500', 'text-white');
+                // Ensure all items are visible initially
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.style.display = 'block';
+                });
+            }
+        });
+    </script>
+</body>
+</html>
