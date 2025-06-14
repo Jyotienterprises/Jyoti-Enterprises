@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-1.0">
+    <title>Jyoti Enterprises - Industries We Serve</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Font - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom CSS variables for exact color matching */
+        :root {
+            --navy-blue: #003366;
+            --orange: #FFA500;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f8f8; /* Light gray background */
+            color: #333; /* Dark gray text */
+            line-height: 1.6;
+        }
+
+        /* Custom Tailwind-like classes for consistent color application */
+        .primary-color-bg { background-color: var(--navy-blue); }
+        .primary-color-text { color: var(--navy-blue); }
+        .secondary-color-bg { background-color: var(--orange); }
+        .secondary-color-text { color: var(--orange); }
+
+        /* Custom class for a subtle shadow on cards and hero section */
+        .card-shadow {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Animations for hero section text */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in-down {
+            animation: fadeInDown 0.8s ease-out forwards;
+        }
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+            animation-delay: 0.2s; /* Delay for a staggered effect */
+        }
+
+        /* Custom hero background with gradient overlay */
+        .hero-bg {
+            background: linear-gradient(rgba(0, 51, 102, 0.8), rgba(0, 51, 102, 0.8)),
+                        url('https://placehold.co/1200x500/003366/FFA500?text=Industries+We+Serve') no-repeat center center/cover;
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Client Logos Grid Styles */
+        .client-logos-grid {
+            display: grid;
+            /* Adjust auto-fit to control how many columns show based on card size */
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); /* Min card width slightly larger for square */
+            gap: 2.5rem; /* Increased spacing between cards */
+            justify-items: center; /* Center items in their grid cells */
+            align-items: start; /* Align items to the start of their cells vertically */
+            padding: 2.5rem; /* Internal padding for the grid section */
+            background-color: transparent; /* No background for this container */
+            max-width: 1200px; /* Max width for the grid to keep it aligned with other containers */
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .client-logo-card {
+            width: 140px; /* Fixed size for the square card */
+            height: 140px; /* Fixed size for the square card */
+            border-radius: 0.75rem; /* Rounded square shape */
+            background-color: white; /* Each logo card retains its white background */
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); /* Slightly stronger initial shadow */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem; /* Padding inside the card */
+            box-sizing: border-box; /* Include padding in width/height */
+            transition: transform 0.4s ease-out, box-shadow 0.4s ease-out, filter 0.4s ease-out; /* Smooth transitions */
+            position: relative; /* Needed for z-index on hover */
+            cursor: pointer; /* Indicate interactivity */
+            filter: grayscale(70%); /* Initially slightly desaturated */
+        }
+
+        /* Enhanced hover effect for individual logo cards */
+        .client-logo-card:hover {
+            transform: translateY(-20px) scale(1.15) rotate(5deg); /* More pronounced lift, scale, and rotation */
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35); /* Stronger, more appealing shadow */
+            z-index: 10; /* Bring hovered item to front */
+            filter: grayscale(0%); /* Full color on hover */
+        }
+
+        .client-logo-card img {
+            width: 80px; /* Adjusted logo size for square card */
+            height: 80px; /* Adjusted logo size for square card */
+            object-fit: contain;
+            margin-bottom: 0.5rem; /* Adjusted margin */
+            border-radius: 50%; /* Image remains round within the square card */
+            border: 3px solid var(--orange); /* Slightly thicker orange border */
+            transition: transform 0.3s ease, border-width 0.3s ease; /* Smooth hover for image, add border-width */
+        }
+
+        .client-logo-card:hover img {
+            transform: scale(1.05); /* Image slightly scales on hover */
+            border-width: 5px; /* Border gets thicker on hover */
+        }
+
+        .client-logo-card h3 {
+            font-size: 0.9rem; /* Slightly larger text for industry name */
+            font-weight: 700; /* Bolder text */
+            color: var(--navy-blue);
+            text-align: center;
+            white-space: normal; /* Allow text to wrap if needed */
+            line-height: 1.2;
+            max-width: 100%; /* Allow text to use full card width */
+            overflow: hidden; /* Hide overflow */
+            text-overflow: ellipsis; /* Add ellipsis for long names */
+            display: -webkit-box; /* For multi-line ellipsis */
+            -webkit-line-clamp: 2; /* Limit to 2 lines */
+            -webkit-box-orient: vertical;
+        }
+
+        /* Animations for sections below the logo grid (keeping staggered fade-in) */
+        @keyframes fadeInRise {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animated-section-item {
+            opacity: 0;
+            animation: fadeInRise 0.6s ease-out forwards;
+        }
+        /* Stagger for "Why Partner with Us" section */
+        .animated-section-item:nth-child(1) { animation-delay: 0.1s; }
+        .animated-section-item:nth-child(2) { animation-delay: 0.2s; }
+        .animated-section-item:nth-child(3) { animation-delay: 0.3s; }
+        .animated-section-item:nth-child(4) { animation-delay: 0.4s; }
+        .animated-section-item:nth-child(5) { animation-delay: 0.5s; }
+        .animated-section-item:nth-child(6) { animation-delay: 0.6s; }
+
+        /* Initial load animation for individual logo cards */
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.7) translateY(30px); } /* Start smaller and lower */
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        .animate-logo-card {
+            opacity: 0;
+            animation: fadeInScale 0.6s ease-out forwards; /* Slightly longer animation */
+        }
+
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+    <!-- Header/Navigation -->
+    <header class="bg-white card-shadow py-4">
+        <div class="container mx-auto px-4 md:px-8 flex flex-col md:flex-row items-center justify-between">
+            <a href="index.html" class="text-2xl md:text-3xl font-bold primary-color-text mb-4 md:mb-0 transform hover:scale-105 transition-transform duration-300 motion-reduce:transform-none">
+                Jyoti <span class="secondary-color-text">Enterprises</span>
+            </a>
+            <nav>
+                <ul class="flex space-x-6 md:space-x-8 text-lg font-medium">
+                    <li><a href="index.html" class="hover:primary-color-text transition-colors duration-300">Home</a></li>
+                    <li><a href="manufacturing.html" class="hover:primary-color-text transition-colors duration-300">Manufacturing</a></li>
+                    <li><a href="products.html" class="hover:primary-color-text transition-colors duration-300">Products</a></li>
+                    <li><a href="quality.html" class="hover:primary-color-text transition-colors duration-300">Quality</a></li>
+                    <li><a href="faq.html" class="hover:primary-color-text transition-colors duration-300">FAQ</a></li>
+                    <li><a href="careers.html" class="hover:primary-color-text transition-colors duration-300">Careers</a></li>
+                    <li><a href="projects.html" class="hover:primary-color-text transition-colors duration-300">Projects</a></li>
+                    <li><a href="testimonials.html" class="hover:primary-color-text transition-colors duration-300">Testimonials</a></li>
+                    <li><a href="industries.html" class="primary-color-text font-semibold transition-colors duration-300">Industries</a></li>
+                    <li><a href="contact.html" class="hover:primary-color-text transition-colors duration-300">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Industries Hero Section -->
+    <section class="hero-bg text-white py-20 px-4 md:px-8 text-center rounded-b-lg mb-12">
+        <div class="container mx-auto">
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-4 animate-fade-in-down">
+                Industries We Proudly Serve
+            </h1>
+            <p class="text-lg md:text-xl opacity-90 mb-8 max-w-3xl mx-auto animate-fade-in-up">
+                Jyoti Enterprises provides reliable solutions and high-quality materials to a diverse range of sectors, powering their growth and success.
+            </p>
+            <a href="#industries-logos-grid" class="inline-block secondary-color-bg text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-orange-600 transition-all duration-300 transform hover:scale-105 card-shadow">
+                Explore Our Reach
+            </a>
+        </div>
+    </section>
+
+    <!-- Industries Logos Section with Advanced Grid -->
+    <section id="industries-logos-grid" class="py-12 px-4 md:px-8">
+        <div class="container mx-auto"> <!-- Wrapper for the section content to constrain width -->
+            <h2 class="text-3xl md:text-4xl font-bold text-center primary-color-text mb-10 relative after:content-[''] after:block after:w-20 after:h-1 after:bg-orange-500 after:mx-auto after:mt-2">
+                Our Sector Expertise
+            </h2>
+            <p class="text-lg text-gray-700 text-center mb-12 max-w-3xl mx-auto">
+                We cater to the unique demands of various industries, delivering specialized fasteners, H-Frames, labour, and transport services.
+            </p>
+
+            <!-- The main grid container for client logos -->
+            <div class="client-logos-grid" id="clientLogosGrid">
+                <!-- Client logo cards will be dynamically generated by JavaScript here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Partner with Us for Your Industry Section -->
+    <section class="py-16 px-4 md:px-8 bg-blue-50 mt-12">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-bold primary-color-text mb-10 relative after:content-[''] after:block after:w-20 after:h-1 after:bg-orange-500 after:mx-auto after:mt-2">
+                Why Partner with Jyoti Enterprises for Your Industry Needs?
+            </h2>
+            <p class="text-lg text-gray-700 mb-12 max-w-3xl mx-auto">
+                We understand the specific demands and regulations of various sectors, offering tailored solutions and unwavering support.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
+                <div class="bg-white p-6 rounded-lg card-shadow text-center animated-section-item">
+                    <span class="text-5xl secondary-color-text mb-4 inline-block">🎯</span>
+                    <h3 class="text-xl font-semibold primary-color-text mb-2">Industry-Specific Solutions</h3>
+                    <p class="text-gray-700">Customized products and services designed to meet the unique challenges and requirements of your sector.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg card-shadow text-center animated-section-item">
+                    <span class="text-5xl secondary-color-text mb-4 inline-block">✅</span>
+                    <h3 class="text-xl font-semibold primary-color-text mb-2">Quality & Compliance</h3>
+                    <p class="text-gray-700">All our offerings adhere to relevant industry standards, certifications, and regulatory guidelines.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg card-shadow text-center animated-section-item">
+                    <span class="text-5xl secondary-color-text mb-4 inline-block">🤝</span>
+                    <h3 class="text-xl font-semibold primary-color-text mb-2">Dedicated Partnership</h3>
+                    <p class="text-gray-700">We work closely with clients to understand their needs and provide continuous support throughout the project lifecycle.</p>
+                </div >
+                <div class="bg-white p-6 rounded-lg card-shadow text-center animated-section-item">
+                    <span class="text-5xl secondary-color-text mb-4 inline-block">🌐</span>
+                    <h3 class="text-xl font-semibold primary-color-text mb-2">Extensive Experience</h3>
+                    <p class="text-gray-700">Years of experience serving diverse industries have equipped us with unparalleled knowledge and adaptability.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg card-shadow text-center animated-section-item">
+                    <span class="text-5xl secondary-color-text mb-4 inline-block">⚙️</span>
+                    <h3 class="text-xl font-semibold primary-color-text mb-2">Reliable Supply Chain</h3>
+                    <p class="text-gray-700">Ensuring timely and efficient delivery of materials, labour, and services to keep your operations running smoothly.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section id="contact-us" class="secondary-color-bg text-white py-16 px-4 md:px-8 text-center mt-12 rounded-lg mx-4 md:mx-auto max-w-5xl card-shadow">
+        <div class="container mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">How Can We Support Your Industry?</h2>
+            <p class="text-lg md:text-xl opacity-90 mb-8">
+                Connect with our expert team to discuss your specific industry requirements and explore tailored solutions.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
+                <a href="tel:+919876543210" class="inline-block primary-color-bg text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-blue-800 transition-all duration-300 transform hover:scale-105 card-shadow">
+                    Call Us Today
+                </a>
+                <a href="mailto:info@jyotienterprises.com" class="inline-block bg-white text-orange-500 border-2 border-orange-500 px-8 py-4 rounded-full text-lg font-semibold hover:bg-orange-50 hover:text-white transition-all duration-300 transform hover:scale-105 card-shadow">
+                    Send Us an Inquiry
+                </a>
+            </div>
+        </div>
+    </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="primary-color-bg text-white py-8 mt-12 rounded-t-lg">
+        <div class="container mx-auto px-4 md:px-8 text-center">
+            <div class="mb-4">
+                <h4 class="text-xl font-semibold mb-2">Jyoti Enterprises</h4>
+                <p class="text-gray-400">Your Partner in Manufacturing, Supply & Logistics</p>
+            </div>
+            <div class="flex flex-col md:flex-row justify-center items-center space-y-2 md:space-y-0 md:space-x-8 text-sm text-gray-400">
+                <p>&copy; 2025 Jyoti Enterprises. All Rights Reserved.</p>
+                <a href="#" class="hover:text-white transition-colors duration-300">Privacy Policy</a>
+                <a href="#" class="hover:text-white transition-colors duration-300">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const industries = [
+                "Construction Co.", "Infra Dev Corp.", "Mega Manu Corp.", "Global Oil Inc.", "Power Grid Solutions",
+                "Mining Group", "Auto Innovations", "Marine Logistics", "Railway Systems", "Agri Solutions",
+                "Textile Mills", "Chem Prod. Ltd.", "Pharma Health Co.", "Food & Bev Group", "Prime Logistics",
+                "Aerospace Tech", "Heavy Equip Co.", "Renewable Power", "Defense Tech", "Utility Services",
+                "Telecommunications", "Health Care Sys", "EduTech World", "Retail Brands", "Hospitality Mgmt",
+                "Electronics Mfg.", "SemiConductor Fabs", "Robotics Auto", "BioTech Labs", "Water Pure Tech",
+                "Pulp & Paper Co.", "Glass Prod. Inc.", "Ceramics Arts", "Metal Fab Works", "Foundry Solutions",
+                "Packaging Corp.", "Eco Recycling", "Waste Mgmt Inc.", "Sugar Mills", "Cement Works",
+                "Steel Structures", "Aluminum Extrusions", "Copper Alloys", "Zinc Smelters", "Glass Processing",
+                "Fertilizer Prod.", "Pesticide Form.", "Tyre Manuf.", "Rubber Products", "Plastic Solutions"
+            ];
+
+            // Ensure there are at least 50 entries, duplicating if necessary to meet the 50+ requirement
+            while (industries.length < 50) {
+                industries.push(...industries.slice(0, Math.min(industries.length, 50 - industries.length)));
+            }
+
+            const clientLogosGrid = document.getElementById('clientLogosGrid');
+            
+            industries.forEach((industry, index) => {
+                const logoCard = document.createElement('div');
+                logoCard.classList.add('client-logo-card', 'group', 'animate-logo-card');
+                // Stagger animation for initial load
+                logoCard.style.animationDelay = `${(index * 0.05)}s`; 
+                logoCard.innerHTML = `
+                    <img src="https://placehold.co/100x100/${(Math.floor(Math.random()*16777215)*0.1).toString(16).slice(0,6)}/${(Math.floor(Math.random()*16777215)*0.9).toString(16).slice(0,6)}?text=${encodeURIComponent(industry.replace(/ /g, '+').substring(0, 5))}" alt="${industry} Logo">
+                    <h3>${industry}</h3>
+                `;
+                clientLogosGrid.appendChild(logoCard);
+            });
+
+            // Intersection Observer for fade-in-bottom animation for sections below the logo grid
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1 // Trigger when 10% of the element is visible
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, observerOptions);
+
+            // Apply observer to all elements with 'animated-section-item' class
+            document.querySelectorAll('.animated-section-item').forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>
